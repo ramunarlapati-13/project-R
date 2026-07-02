@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramu Narlapati // RAM-AI Portfolio Hub</title>
+  <meta name="description" content="Interactive RAG-powered AI Portfolio Chatbot and Project Hub for Ramu Narlapati, Electrical Engineer and Full-Stack Developer.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Navigation Header ─────────────────────────────────────────────────── -->
+  <header class="navbar">
+    <a href="#" class="brand">
+      <div class="brand-logo">R</div>
+      <div class="brand-text">
+        <h1>RAMU NARLAPATI</h1>
+        <span>AI Portfolio // Engineering & Dev</span>
+      </div>
+    </a>
+
+    <div class="nav-controls">
+      <div class="status-badge" title="Backend connected to Groq Llama-3.3-70b">
+        <div class="status-dot"></div>
+        <span>Groq RAG Online</span>
+      </div>
+
+      <div class="view-tabs">
+        <button class="tab-btn active" data-tab="chat-tab">
+          <span>💬</span> AI Assistant
+        </button>
+        <button class="tab-btn" data-tab="grid-tab">
+          <span>🗂️</span> Portfolio Grid
+        </button>
+      </div>
+
+      <button class="action-btn" id="sound-toggle-btn" title="Toggle UI Audio Effects">
+        🔊 Sound: ON
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Main Content Area ─────────────────────────────────────────────────── -->
+  <main class="main-container">
+
+    <!-- 1. AI Chat Assistant Tab -->
+    <section id="chat-tab" class="tab-content active">
+      
+      <!-- Sidebar / Profile Overview -->
+      <aside class="sidebar-panel">
+        <div class="profile-card">
+          <div class="profile-avatar">⚡</div>
+          <h2>Ramu Narlapati</h2>
+          <p>EEE Engineer & Full Stack Dev</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>🎓 Education</h3>
+          <div class="info-item">
+            <strong>JNTUK</strong><br>
+            B.Tech in Electrical & Electronics Engineering (3rd Year)
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>🛠️ Core Technical Skills</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Power Systems</span>
+            <span class="skill-tag">Induction Motors</span>
+            <span class="skill-tag">Wind & Solar Energy</span>
+            <span class="skill-tag">React Native / Expo</span>
+            <span class="skill-tag">Next.js / React</span>
+            <span class="skill-tag">Firebase & IoT</span>
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">DBMS & SQL</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>🗣️ Languages</h3>
+          <div class="skills-list">
+            <span class="skill-tag">Telugu (Native)</span>
+            <span class="skill-tag">English</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section" style="margin-top: auto;">
+          <button class="action-btn" id="reset-btn" style="width: 100%; justify-content: center; border-color: rgba(255,100,100,0.3); color: #fca5a5;">
+            🔄 Clear Chat Memory
+          </button>
+        </div>
+      </aside>
+
+      <!-- Chat Interface -->
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-title">
+            <h3>RAM-AI Assistant</h3>
+            <span>• Powered by Groq Llama-3.3-70b & RAG</span>
+          </div>
+        </div>
+
+        <!-- Messages Area -->
+        <div class="chat-messages" id="chat-messages">
+          <!-- Initial greeting dynamically appended via JS -->
+        </div>
+
+        <!-- Quick Suggestion Chips -->
+        <div class="suggestion-chips">
+          <button class="chip" data-prompt="What is Ramu's educational background and degree?">
+            🎓 Education & Engineering
+          </button>
+          <button class="chip" data-prompt="Tell me about the FFSD wearable firefighter safety project.">
+            🔥 FFSD Firefighter App
+          </button>
+          <button class="chip" data-prompt="What experience does Ramu have with Solar energy and IoT monitoring?">
+            ☀️ Solar & IoT Projects
+          </button>
+          <button class="chip" data-prompt="List Ramu's web development and Next.js applications.">
+            🌐 Next.js & Web Apps
+          </button>
+          <button class="chip" data-prompt="How does Ramu combine Electrical Engineering with modern Software Development?">
+            ⚡ EEE + Software Synergy
+          </button>
+        </div>
+
+        <!-- Input Bar -->
+        <div class="chat-input-container">
+          <input 
+            type="text" 
+            id="chat-input" 
+            class="chat-input" 
+            placeholder="Ask RAM-AI anything about Ramu's projects, skills, or experience..." 
+            autocomplete="off"
+          />
+          <button id="send-btn" class="send-btn" title="Send Message">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Interactive Portfolio Grid Tab -->
+    <section id="grid-tab" class="tab-content">
+      <div class="grid-header">
+        <div class="grid-title">
+          <h2>Project Portfolio</h2>
+          <p>Explore Ramu's engineering simulations, hardware-tethered dashboards, and full-stack applications.</p>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects (10)</button>
+          <button class="filter-btn" data-filter="react">React / Next.js</button>
+          <button class="filter-btn" data-filter="iot">IoT / Hardware</button>
+          <button class="filter-btn" data-filter="firebase">Firebase</button>
+          <button class="filter-btn" data-filter="web">Web & Simulations</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Grid -->
+      <div class="projects-grid" id="projects-grid">
+        <!-- Loaded dynamically from /api/projects -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

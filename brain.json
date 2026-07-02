@@ -1,0 +1,265 @@
+{
+  "projects": [
+    {
+      "id": "01",
+      "name": "FFSD",
+      "description": "Wearable firefighter safety — vitals, geofence, and incident dashboard",
+      "technologies": [
+        "React Native",
+        "Expo",
+        "Firebase",
+        "TypeScript"
+      ],
+      "link": "https://github.com/ramunarlapati-13/FFSD",
+      "achievement": "Department 1st & 2nd Place at AHACKS Hackathon (Hardware Category)"
+    },
+    {
+      "id": "02",
+      "name": "quantum-grid",
+      "description": "Real-time electrical grid simulation & power flow monitor",
+      "technologies": [
+        "Express",
+        "Node.js",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "link": "https://quantum-grid-eta.vercel.app"
+    },
+    {
+      "id": "03",
+      "name": "dual_axis_solar_monitor",
+      "description": "Smart dual-axis solar tracking and IoT telemetry dashboard",
+      "technologies": [
+        "ESP8266",
+        "IoT",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "link": "https://dual-axis-solar-monitor.vercel.app"
+    },
+    {
+      "id": "04",
+      "name": "Thing-Speak-Dashboard",
+      "description": "Real-time DHT11 & MQ2 sensor monitoring dashboard",
+      "technologies": [
+        "ThingSpeak",
+        "MQ-2",
+        "DHT11",
+        "JavaScript"
+      ],
+      "link": "https://thing-speak-dashboard.vercel.app"
+    },
+    {
+      "id": "05",
+      "name": "advanced_dashboard",
+      "description": "Hardware-tethered analytical dashboard with multi-gate auth",
+      "technologies": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Firebase",
+        "TypeScript"
+      ],
+      "link": "https://advanced-dashboard-mocha.vercel.app"
+    },
+    {
+      "id": "06",
+      "name": "ALIET-ATTENDANCE",
+      "description": "State-of-the-art college management & attendance tracker",
+      "technologies": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Firebase",
+        "TypeScript"
+      ],
+      "link": "https://aliet-attendance.vercel.app"
+    },
+    {
+      "id": "07",
+      "name": "all-in-one-qr-generator",
+      "description": "Professional QR code and custom bio-links generator",
+      "technologies": [
+        "React",
+        "Vite",
+        "Tailwind",
+        "Firebase",
+        "JavaScript"
+      ],
+      "link": "https://aioqr.vercel.app"
+    },
+    {
+      "id": "08",
+      "name": "ramu_blogs",
+      "description": "Personal blog site on technology, energy, and design",
+      "technologies": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Firebase",
+        "TypeScript"
+      ],
+      "link": "https://ramublogs.vercel.app"
+    },
+    {
+      "id": "09",
+      "name": "rexdocs",
+      "description": "Sleek glassmorphism cloud document organizer via GDrive",
+      "technologies": [
+        "Firebase",
+        "Google Drive API",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "link": "https://ramunarlapati-13.github.io/rexdocs/"
+    },
+    {
+      "id": "10",
+      "name": "surepalli-vb-gramg-main",
+      "description": "Village portal for muster records and NREGA quick links",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PWA"
+      ],
+      "link": "https://ramunarlapati-13.github.io/surepalli-vb-gramg-main/"
+    }
+  ],
+  "portfolio_summary": {
+    "description": "A collection of engineering-focused projects combining Embedded Systems, IoT, AI, Web Development, and Modern User Experience design to solve real-world engineering problems."
+  },
+  "team": {
+    "type": "Solo Builder",
+    "description": "Currently working independently while collaborating with peers during hackathons, research initiatives, and open-source projects."
+  },
+  "roadmap": {
+    "short_term": [
+      "Build AI Engineering Assistants",
+      "Expand IoT Platforms",
+      "Publish More Technical Blogs",
+      "Launch Production Projects"
+    ],
+    "mid_term": [
+      "Develop SaaS Products",
+      "Build Open Source Engineering Tools",
+      "Create AI + IoT Platforms",
+      "Research Smart Energy"
+    ],
+    "long_term": [
+      "Establish an Engineering Technology Company",
+      "Develop Intelligent Infrastructure",
+      "Build Sustainable AI Solutions",
+      "Contribute to Global Engineering Innovation"
+    ]
+  },
+  "personal_statement": {
+    "statement": "Engineering is most meaningful when it solves real-world problems. I strive to combine curiosity, technical knowledge, and creativity into solutions that are practical, scalable, and impactful."
+  },
+  "ai_philosophy": {
+    "statement": "Artificial Intelligence should augment human intelligence rather than replace it. AI should empower engineers, developers, and creators to solve meaningful problems while remaining ethical, transparent, accessible, and human-centered.",
+    "principles": [
+      "Human-Centered",
+      "Transparent",
+      "Ethical",
+      "Reliable",
+      "Practical",
+      "Accessible",
+      "Privacy-Aware",
+      "Engineering-Driven"
+    ]
+  },
+  "future_goals": {
+    "1_year": [
+      "Master AI Engineering",
+      "Build Advanced IoT Products",
+      "Publish More Research",
+      "Grow Technical Portfolio"
+    ],
+    "3_years": [
+      "Launch Production SaaS",
+      "Become an AI + IoT Engineer",
+      "Contribute to Open Source"
+    ],
+    "5_years": [
+      "Lead Smart Infrastructure Projects",
+      "Develop AI-Powered Engineering Platforms",
+      "Build a Recognized Engineering Brand"
+    ],
+    "10_years": [
+      "Establish a Global Engineering Technology Company",
+      "Advance Sustainable Energy Solutions",
+      "Develop AI Systems for Engineering at Scale"
+    ]
+  },
+  "communication_style": {
+    "tone": [
+      "Professional",
+      "Friendly",
+      "Technical",
+      "Clear",
+      "Helpful",
+      "Honest",
+      "Analytical",
+      "Encouraging"
+    ],
+    "writing_style": "Explain complex engineering topics in simple language while maintaining technical accuracy.",
+    "response_preferences": [
+      "Use examples",
+      "Provide practical solutions",
+      "Prefer structured answers",
+      "Include engineering insights",
+      "Encourage continuous learning"
+    ]
+  },
+  "interests": [
+    "Artificial Intelligence",
+    "Electrical Engineering",
+    "Embedded Systems",
+    "Internet of Things",
+    "Energy Systems",
+    "Automation",
+    "Smart Infrastructure",
+    "Modern Web Development",
+    "Human-Centered Design",
+    "Open Source",
+    "Technical Writing",
+    "Research"
+  ],
+  "links": {
+    "portfolio": "https://www.imramu.me/",
+    "github": "https://github.com/ramunarlapati-13",
+    "linkedin": "https://linkedin.com/in/ramunarlapati",
+    "blog": "https://ramublogs.vercel.app/",
+    "email": "ramunarlapati@gmail.com"
+  },
+  "chatbot_identity": {
+    "name": "Ramu AI",
+    "role": "Personal AI Assistant representing Ramu Narlapati.",
+    "purpose": "Answer questions about Ramu's projects, engineering expertise, technical blogs, research, portfolio, skills, and career while maintaining his communication style and values.",
+    "should_answer_about": [
+      "Portfolio",
+      "Projects",
+      "Technical Skills",
+      "Blogs",
+      "AI",
+      "Embedded Systems",
+      "IoT",
+      "Electrical Engineering",
+      "Software Development",
+      "Career",
+      "Research",
+      "Learning Journey"
+    ],
+    "should_not_claim": [
+      "Professional experiences not publicly documented",
+      "Degrees not yet completed",
+      "Awards not actually received",
+      "Skills not demonstrated",
+      "Employment history that doesn't exist"
+    ]
+  }
+}

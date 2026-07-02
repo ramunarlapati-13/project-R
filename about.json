@@ -1,0 +1,156 @@
+{
+    "profile": {
+        "name": "Ramu Narlapati",
+        "title": "Electrical & Electronics Engineering Student | Embedded Systems Developer | AI-Powered Full-Stack Builder",
+        "short_bio": "Electrical & Electronics Engineering student passionate about building intelligent systems that bridge hardware and software through Embedded Systems, IoT, Artificial Intelligence, and modern Web Development.",
+        "location": "Andhra Pradesh, India",
+        "education": {
+            "degree": "Bachelor of Technology",
+            "branch": "Electrical & Electronics Engineering",
+            "university": "JNTUK",
+            "college": "Andhra Loyola Institute of Engineering & Technology",
+            "status": "Pursuing"
+        }
+    },
+    "about_me": {
+        "summary": "I am an Electrical and Electronics Engineering student with a passion for building intelligent engineering solutions by combining embedded hardware, cloud technologies, artificial intelligence, and modern software development. My work focuses on creating practical systems that collect, analyze, and visualize real-world engineering data while making complex technologies intuitive and accessible.",
+        "mission": "To bridge electrical engineering with intelligent software and AI, creating innovative solutions that solve real-world engineering problems.",
+        "personality": {
+            "traits": [
+                "Curious",
+                "Analytical",
+                "Self-Learner",
+                "Problem Solver",
+                "Builder",
+                "Research-Oriented",
+                "Minimalist",
+                "Creative",
+                "Engineering Mindset",
+                "Community Driven"
+            ]
+        }
+    },
+    "founder_bio": {
+        "full": "Ramu Narlapati is an Electrical & Electronics Engineering student, embedded systems developer, and AI-powered full-stack builder passionate about creating technology that connects the physical and digital worlds. His work combines electrical engineering, IoT, embedded systems, artificial intelligence, and modern web development to build practical solutions for real-world problems. From smart safety devices and solar tracking systems to engineering dashboards and AI-driven applications, he enjoys transforming complex engineering concepts into intuitive digital experiences. Ramu believes the future of engineering lies in the convergence of hardware intelligence, software, and AI, and continuously builds projects that contribute toward smarter infrastructure, sustainable energy, and accessible engineering tools."
+    },
+    "vision": {
+        "statement": "To build a future where Electrical Engineering, Artificial Intelligence, Embedded Systems, and Software Engineering work together to create intelligent, sustainable, and human-centered technologies that improve lives worldwide."
+    },
+    "mission": {
+        "statement": "To design practical engineering solutions by integrating embedded systems, IoT, AI, and modern software while continuously learning, sharing knowledge, and contributing to the engineering community."
+    },
+    "technical_background": {
+        "engineering": [
+            "Electrical Engineering",
+            "Power Systems",
+            "Electrical Machines",
+            "Power Electronics",
+            "Industrial Automation"
+        ],
+        "embedded": [
+            "ESP32",
+            "Arduino",
+            "Embedded C",
+            "UART",
+            "SPI",
+            "I2C",
+            "MQTT"
+        ],
+        "iot": [
+            "Firebase RTDB",
+            "Cloud Integration",
+            "Real-Time Monitoring",
+            "Sensor Integration",
+            "IoT System Design"
+        ],
+        "programming": [
+            "Python",
+            "C",
+            "Embedded C",
+            "Assembly",
+            "JavaScript",
+            "TypeScript",
+            "MATLAB"
+        ],
+        "frontend": [
+            "React",
+            "Next.js",
+            "Tailwind CSS",
+            "HTML",
+            "CSS"
+        ],
+        "mobile": [
+            "React Native",
+            "Expo"
+        ],
+        "backend": [
+            "Firebase",
+            "REST APIs"
+        ],
+        "ai": [
+            "Prompt Engineering",
+            "AI-assisted Development",
+            "LLM Integration",
+            "Workflow Automation"
+        ]
+    },
+    "skills": {
+        "engineering": [
+            "Embedded Systems",
+            "Electrical Engineering",
+            "IoT Development",
+            "Sensor Integration",
+            "Power Electronics",
+            "PCB Prototyping",
+            "Engineering Simulation"
+        ],
+        "software": [
+            "React",
+            "Next.js",
+            "Python",
+            "Firebase",
+            "JavaScript",
+            "TypeScript",
+            "Tailwind CSS",
+            "REST API"
+        ],
+        "artificial_intelligence": [
+            "Prompt Engineering",
+            "AI Integration",
+            "Automation",
+            "LLM Applications",
+            "AI-assisted Coding"
+        ],
+        "professional": [
+            "Problem Solving",
+            "Technical Writing",
+            "Research",
+            "Rapid Prototyping",
+            "Project Management",
+            "System Design"
+        ]
+    },
+    "developer_profile": {
+        "type": "Engineering-Focused Full Stack Developer",
+        "description": "I specialize in building intelligent engineering systems by combining embedded hardware, cloud-connected IoT, AI-powered software, and modern web technologies. My strength lies in understanding both the physical and digital aspects of a system, allowing me to create complete end-to-end engineering solutions."
+    },
+    "project_focus": {
+        "description": "My work focuses on intelligent engineering platforms that integrate hardware, cloud computing, AI, and web technologies.",
+        "domains": [
+            "Embedded Systems",
+            "IoT",
+            "Artificial Intelligence",
+            "Energy Systems",
+            "Engineering Dashboards",
+            "Automation",
+            "Smart Infrastructure",
+            "Web Applications"
+        ]
+    },
+    "achievements": [
+        "Class 1st — B.Tech II Year",
+        "Department 1st — Firefighter Safety Device Project",
+        "2nd Place — AHACKS College Hackathon, Hardware Category",
+        "1st Place — IEI Student Chapter Paper Presentation"
+    ]
+}
