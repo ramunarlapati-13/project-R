@@ -1,0 +1,13 @@
+{
+  "name": "ram-ai-portfolio",
+  "version": "1.0.0",
+  "description": "Full-stack RAG AI Assistant and interactive portfolio grid built with pure Node.js and Groq Llama-3.3-70b",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}
