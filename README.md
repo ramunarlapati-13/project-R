@@ -57,3 +57,79 @@ When opened this way:
 - **`server.js`**: Pure Node.js built-in HTTP server (`http`, `https`, `fs`, `path`). No `npm install` needed! Dynamically reads `brain.json` and `about.json` on every request.
 - **`index.html` & `style.css`**: Ultra-premium dark obsidian glassmorphism UI with responsive design.
 - **`script.js`**: Client-side RAG chat interaction, Web Audio API sound effects, and interactive portfolio grid with live stack filtering.
+
+---
+
+## 🌐 Live API Reference (`https://project-r-cjgn.onrender.com`)
+
+The backend exposes a clean REST API with full CORS support. You can interact with the live deployed instance or your local server (`http://localhost:3000`).
+
+### 1. Health & Status Check
+- **Endpoint**: `GET /api/health`
+- **Description**: Returns system availability, active Groq LLM model, and knowledge base loading statistics.
+- **Example Request**:
+  ```bash
+  curl https://project-r-cjgn.onrender.com/api/health
+  ```
+- **Response**:
+  ```json
+  {
+    "status": "online",
+    "model": "llama-3.3-70b-versatile",
+    "knowledgeBase": { "projectsCount": 12, "hasAbout": true },
+    "timestamp": "2026-07-02T17:41:36.000Z"
+  }
+  ```
+
+### 2. RAG AI Chat Assistant
+- **Endpoint**: `POST /api/chat`
+- **Description**: Sends a user message to the Groq-powered RAG assistant. Retains session memory up to the last 10 messages.
+- **Headers**: `Content-Type: application/json`
+- **Request Body**:
+  ```json
+  {
+    "message": "What projects has RAM built using React?",
+    "sessionId": "user-session-123"
+  }
+  ```
+- **Example Request**:
+  ```bash
+  curl -X POST https://project-r-cjgn.onrender.com/api/chat \
+    -H "Content-Type: application/json" \
+    -d '{"message": "Tell me about RAMs skills", "sessionId": "demo"}'
+  ```
+- **Response**:
+  ```json
+  {
+    "reply": "RAM is a full-stack developer skilled in React, Node.js, and AI architecture...",
+    "sessionId": "demo",
+    "timestamp": "2026-07-02T17:41:36.000Z"
+  }
+  ```
+
+### 3. Get Portfolio Projects
+- **Endpoint**: `GET /api/projects`
+- **Description**: Dynamically loads and returns all projects and metadata from `brain.json`.
+- **Example Request**:
+  ```bash
+  curl https://project-r-cjgn.onrender.com/api/projects
+  ```
+
+### 4. Get Developer Profile
+- **Endpoint**: `GET /api/about`
+- **Description**: Returns developer bio, social links, and career summary from `about.json`.
+- **Example Request**:
+  ```bash
+  curl https://project-r-cjgn.onrender.com/api/about
+  ```
+
+### 5. Reset Conversation Session
+- **Endpoint**: `POST /api/reset`
+- **Description**: Clears the in-memory chat history for a specific session ID.
+- **Request Body**:
+  ```json
+  {
+    "sessionId": "user-session-123"
+  }
+  ```
+
