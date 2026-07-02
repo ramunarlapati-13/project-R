@@ -1,23 +1,79 @@
-# Environment variables and secrets
+# ── Environment Variables & Secrets ──────────────────────────────────────────
 .env
 *.env
 .env.*
 !.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Logs
+# ── Credentials & Sensitive Configs ──────────────────────────────────────────
+secrets.json
+credentials.json
+auth.json
+service-account.json
+*-secret.json
+*-key.json
+config.local.json
+*.local.json
+
+# ── Private Keys & Certificates ──────────────────────────────────────────────
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pub
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.ppk
+
+# ── Node / Dependency Artifacts ──────────────────────────────────────────────
+node_modules/
+jspm_packages/
+.npm
+.yarn/
+.pnp.*
+
+# ── Logs & Debugging ─────────────────────────────────────────────────────────
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Runtime data
+# ── Runtime & Cache Data ─────────────────────────────────────────────────────
 pids
 *.pid
 *.seed
 *.pid.lock
+*.cache
+.eslintcache
 
-# OS generated files
+# ── Databases & Storage ──────────────────────────────────────────────────────
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+*.mongodb
+
+# ── Backups & Temp Files ─────────────────────────────────────────────────────
+*.bak
+*.tmp
+*.temp
+*.old
+*.orig
+*~
+*.swp
+
+# ── OS & IDE Generated Files ─────────────────────────────────────────────────
 .DS_Store
 .DS_Store?
 ._*
@@ -25,3 +81,13 @@ pids
 .Trashes
 ehthumbs.db
 Thumbs.db
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
