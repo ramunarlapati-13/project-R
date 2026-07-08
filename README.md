@@ -1,19 +1,58 @@
-# RAM-AI Portfolio Chatbot & Project Grid
+# RAM-AI Portfolio Chatbot & Project Grid 🧠⚡
 
-A full-stack RAG (Retrieval-Augmented Generation) AI Assistant and interactive portfolio grid built with zero npm dependencies and Groq Llama-3.3-70b.
+A high-performance, full-stack RAG (Retrieval-Augmented Generation) AI Assistant and interactive portfolio grid built with **zero external npm dependencies** and powered by **Groq Llama-3.3-70b**. 
+
+This repository serves as both a lightweight, standalone AI-powered portfolio site and a robust backend API for external frontends (such as your React/Vite Master portfolio) to query developer facts, skills, and projects in real-time.
 
 ---
 
-## 🔑 API Key Setup (Important!)
+## 🏗️ Architecture Overview
 
-The RAG chatbot requires a Groq API key. A `.env` file is used to store your secret key securely.
+The application features a unique dual-architecture:
+1. **Frontend**: An ultra-premium, dark obsidian glassmorphism landing page (`index.html`, `style.css`, `script.js`) with Web Audio API sound effects, dynamic category filtering, and chat interactions.
+2. **Backend**: A pure Node.js HTTP server (`server.js`) that operates with zero npm dependencies, parses environment variables, serves static files, and drives a live RAG pipeline using the Groq API.
 
-1. Ensure a file named **`.env`** exists in the project root directory (you can copy `.env.example` to `.env`).
-2. Add your Groq API key inside **`.env`**:
+### 🧠 RAG & AI Pipeline Flow
+
+The RAG assistant dynamically reads knowledge files from disk on every request. Here is how a user question is answered:
+
+```mermaid
+graph TD
+    A[User types query] --> B[POST /api/chat]
+    B --> C[Server reads about.json & brain.json from disk]
+    C --> D[Compile RAG System Prompt with developer bio, projects & skills]
+    D --> E[Retrieve session history from In-Memory map]
+    E --> F[Slice history to last 10 messages for token efficiency]
+    F --> G[Format payload: System Prompt + History + User Message]
+    G --> H[Send HTTPS POST to Groq Chat Completion API]
+    H --> I[Parse reply and append to Session History]
+    I --> J[Return response to client]
+```
+
+---
+
+## ⚡ Key Highlights & Features
+
+- **Zero NPM Dependencies**: Built using only Node.js native core libraries (`http`, `https`, `fs`, `path`, `url`). Zero package bloat, zero security audit warnings, and instant startup times.
+- **Dynamic Context Reloading**: Reads `about.json` and `brain.json` on the fly for every incoming request. You can modify your projects or bio in the JSON files, and the AI assistant immediately learns the new facts without needing a server restart!
+- **Session Memory Management**: Features an in-memory session store tracking separate client sessions. To optimize context window usage and prevent hallucination, it dynamically retains only the last 10 exchanges per session.
+- **Cross-Origin Resource Sharing (CORS)**: Out-of-the-box preflight `OPTIONS` handling with full wildcard CORS support, enabling external portfolios to query its endpoints securely.
+- **Lightweight Launcher**: Includes a quick-launcher script for Windows developers that automatically diagnoses Node.js, runs the server, and fires up the browser.
+
+---
+
+## 🔑 API Key Setup (Required)
+
+The RAG chatbot requires a Groq API key to query the `llama-3.3-70b-versatile` model.
+
+1. Locate or create a file named **`.env`** in the project root directory (you can copy `.env.example` to start).
+2. Insert your Groq API key inside **`.env`**:
    ```env
    GROQ_API_KEY=your_actual_groq_api_key_here
+   PORT=3000
+   GROQ_MODEL=llama-3.3-70b-versatile
    ```
-   *(Get a free API key at [console.groq.com/keys](https://console.groq.com/keys))*
+   *(Obtain a free API key at [console.groq.com/keys](https://console.groq.com/keys))*
 
 ---
 
@@ -21,48 +60,38 @@ The RAG chatbot requires a Groq API key. A `.env` file is used to store your sec
 
 ### Option 1: Double-Click Launcher (Easiest!)
 
-Simply double-click the **`start_server.bat`** file inside this folder (`c:\website\project ram`).
+Simply double-click the **`start_server.bat`** file inside this folder (`c:\website\project R`).
 
-- This will automatically check for Node.js, launch the backend server on port 3000, and open your default web browser to `http://localhost:3000`.
+- This script will automatically verify Node.js is on your path, launch the backend server on port 3000, and open your default web browser to `http://localhost:3000`.
 
 ### Option 2: Terminal / Command Prompt
 
 If you prefer running via command line:
 
-1. Open terminal or command prompt inside `c:\website\project ram`.
-2. Run the command:
-
+1. Open your terminal or Command Prompt inside `c:\website\project R`.
+2. Run the start command:
    ```bash
    node server.js
    ```
-
-3. Open your browser and go to: **[http://localhost:3000](http://localhost:3000)**
+3. Open your browser and navigate to: **[http://localhost:3000](http://localhost:3000)**
 
 ---
 
 ## ⚠️ Why Did It Say "Not Running" Or Give CORS/Network Errors?
 
-If you double-clicked `index.html` directly in your File Explorer, your web browser opened it using the **`file:///`** protocol (e.g. `file:///C:/website/project%20ram/index.html`).
-When opened this way:
+If you double-clicked `index.html` directly in your File Explorer, your web browser opened it using the **`file:///`** protocol (e.g., `file:///C:/website/project%20R/index.html`).
 
-1. **No backend server is running**, so the AI chatbot cannot talk to Groq's API.
-2. **Browser security (CORS)** blocks JavaScript from reading `brain.json` and `about.json`.
+When opened this way:
+1. **No backend server is running**, so the AI chatbot cannot communicate with the Groq API.
+2. **Browser security (CORS)** blocks local JavaScript from reading the local `brain.json` and `about.json` files on disk.
 
 👉 **Solution**: Always start the server using `start_server.bat` or `node server.js` and view the site through **[http://localhost:3000](http://localhost:3000)**.
 
 ---
 
-## 🧠 Architecture & Features
+## 🌐 API Reference
 
-- **`server.js`**: Pure Node.js built-in HTTP server (`http`, `https`, `fs`, `path`). No `npm install` needed! Dynamically reads `brain.json` and `about.json` on every request.
-- **`index.html` & `style.css`**: Ultra-premium dark obsidian glassmorphism UI with responsive design.
-- **`script.js`**: Client-side RAG chat interaction, Web Audio API sound effects, and interactive portfolio grid with live stack filtering.
-
----
-
-## 🌐 Live API Reference (`https://project-r-cjgn.onrender.com`)
-
-The backend exposes a clean REST API with full CORS support. You can interact with the live deployed instance or your local server (`http://localhost:3000`).
+The backend exposes a clean REST API. You can interact with the live deployed instance (`https://project-r-cjgn.onrender.com`) or your local server (`http://localhost:3000`).
 
 ### 1. Health & Status Check
 - **Endpoint**: `GET /api/health`
@@ -76,8 +105,8 @@ The backend exposes a clean REST API with full CORS support. You can interact wi
   {
     "status": "online",
     "model": "llama-3.3-70b-versatile",
-    "knowledgeBase": { "projectsCount": 12, "hasAbout": true },
-    "timestamp": "2026-07-02T17:41:36.000Z"
+    "knowledgeBase": { "projectsCount": 10, "hasAbout": true },
+    "timestamp": "2026-07-08T23:30:00.000Z"
   }
   ```
 
@@ -103,7 +132,7 @@ The backend exposes a clean REST API with full CORS support. You can interact wi
   {
     "reply": "RAM is a full-stack developer skilled in React, Node.js, and AI architecture...",
     "sessionId": "demo",
-    "timestamp": "2026-07-02T17:41:36.000Z"
+    "timestamp": "2026-07-08T23:30:05.000Z"
   }
   ```
 
@@ -132,4 +161,14 @@ The backend exposes a clean REST API with full CORS support. You can interact wi
     "sessionId": "user-session-123"
   }
   ```
+- **Response**:
+  ```json
+  {
+    "status": "success",
+    "message": "Session user-session-123 reset."
+  }
+  ```
 
+---
+
+Designed & Developed by **Narlapati Ramu** | 2026
