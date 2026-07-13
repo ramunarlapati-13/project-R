@@ -99,14 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let formatted = text
       // Escape HTML tags to prevent XSS
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      // Links [text](url) - parsed first, allowing optional spaces between ] and (
+      .replace(/\[([^\]]+)\]\s*\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>')
       // Convert markdown headings (### text, ## text, # text) to styled bold text
       .replace(/^\s*#{1,6}\s*(.*?)\s*$/gm, '<strong style="color: var(--accent-cyan); font-size: 1.08em; display: inline-block; margin-top: 0.6em; margin-bottom: 0.2em;">$1</strong>')
       // Bold **text**
       .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
       // Inline code `code`
-      .replace(/`([^`]+)`/g, "<code>$1</code>")
-      // Links [text](url)
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1 ↗</a>');
+      .replace(/`([^`]+)`/g, "<code>$1</code>");
 
     // Process lines into paragraphs and unordered bullet lists cleanly
     const lines = formatted.split("\n");

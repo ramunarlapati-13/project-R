@@ -365,7 +365,8 @@ const server = http.createServer(async (req, res) => {
       ".svg": "image/svg+xml",
       ".ico": "image/x-icon",
       ".woff": "font/woff",
-      ".woff2": "font/woff2"
+      ".woff2": "font/woff2",
+      ".pdf": "application/pdf"
     };
 
     const contentType = mimeTypes[ext] || "application/octet-stream";

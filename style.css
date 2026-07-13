@@ -569,10 +569,25 @@ body {
   color: var(--accent-blue);
   text-decoration: underline;
   font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 .message-content a:hover {
   color: var(--accent-cyan);
+}
+
+/* Ensure links styled with bold or containing bold elements are styled as clickable links */
+.message-content a strong,
+.message-content strong a {
+  color: var(--accent-blue) !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.message-content a:hover strong,
+.message-content strong a:hover {
+  color: var(--accent-cyan) !important;
 }
 
 .message-content code {
