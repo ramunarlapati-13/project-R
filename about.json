@@ -183,6 +183,24 @@
             "provider": "MathWorks",
             "platform": "MathWorks",
             "issued": "Jul 2026"
+        },
+        {
+            "name": "Industrial Internet Of Things",
+            "provider": "MyTeGEN EDUCATIONAL SERVICES PVT LTD",
+            "platform": "MyTeGEN",
+            "issued": "Completed"
+        },
+        {
+            "name": "Introduction to IoT Course",
+            "provider": "NPTEL",
+            "platform": "NPTEL",
+            "issued": "Completed"
+        },
+        {
+            "name": "Chefronics's M-Botics Workshop",
+            "provider": "Chefronics Technologies Pvt Ltd",
+            "platform": "Workshop",
+            "issued": "Completed"
         }
     ],
     "achievements": [
