@@ -147,6 +147,44 @@
             "Web Applications"
         ]
     },
+    "certifications": [
+        {
+            "name": "Learn PLC and HMI from Scratch (Basic)",
+            "provider": "Packt",
+            "platform": "Coursera",
+            "issued": "Jul 2026"
+        },
+        {
+            "name": "Battery Design and Management",
+            "provider": "MathWorks",
+            "platform": "Coursera",
+            "issued": "Jul 2026"
+        },
+        {
+            "name": "Google AI (Professional Certificate)",
+            "provider": "Google",
+            "platform": "Coursera",
+            "issued": "Jul 2026"
+        },
+        {
+            "name": "Electrified Systems Design Engineer (Professional Certification - 7 sub courses)",
+            "provider": "MathWorks",
+            "platform": "Coursera",
+            "issued": "Jul 2026"
+        },
+        {
+            "name": "Simulink Onramp",
+            "provider": "MathWorks",
+            "platform": "MathWorks",
+            "issued": "Jul 2026"
+        },
+        {
+            "name": "Matlab Onramp",
+            "provider": "MathWorks",
+            "platform": "MathWorks",
+            "issued": "Jul 2026"
+        }
+    ],
     "achievements": [
         "Class 1st — B.Tech II Year",
         "Department 1st — Firefighter Safety Device Project",

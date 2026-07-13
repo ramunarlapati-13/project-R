@@ -90,6 +90,7 @@ Your purpose: ${identity?.purpose || "Answer questions about Ramu's projects, en
 - Location: ${profile?.location || "Andhra Pradesh, India"}
 - Education: ${edu?.degree || ""} in ${edu?.branch || edu?.course || "EEE"} at ${edu?.university || "JNTUK"} (${edu?.college || ""}) - Status: ${edu?.status || "Pursuing"}.
 - Achievements & Awards: ${(aboutData?.achievements || []).join("; ")}
+- Certifications & Courses: ${(aboutData?.certifications || []).map(c => `${c.name} by ${c.provider} (Platform: ${c.platform}, Issued: ${c.issued})`).join("; ")}
 - Vision: ${aboutData?.vision?.statement || ""}
 - Mission: ${aboutData?.mission?.statement || ""}
 
