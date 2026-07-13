@@ -97,7 +97,8 @@ ${eduHistory.map(e => `  * ${e.degree} in ${e.branch || "General"} at ${e.colleg
 - Experience & Traineeships:
 ${experience.map(exp => `  * ${exp.role} (${exp.focus}) at ${exp.organization || "N/A"}, Location: ${exp.location} (${exp.timeline}) - ${exp.academic_context}. Details: ${exp.description.join("; ")}`).join("\n")}
 - Achievements & Awards: ${(aboutData?.achievements || []).join("; ")}
-- Certifications & Courses: ${(aboutData?.certifications || []).map(c => `${c.name} by ${c.provider} (Platform: ${c.platform}, Issued: ${c.issued})`).join("; ")}
+- Certifications & Courses:
+${(aboutData?.certifications || []).map(c => `  * **${c.name}** by ${c.provider} (Platform: ${c.platform}, Issued: ${c.issued})`).join("\n")}
 - Vision: ${aboutData?.vision?.statement || ""}
 - Mission: ${aboutData?.mission?.statement || ""}
 
@@ -141,7 +142,11 @@ ${projectsList.map((p, idx) => `
 3. **Highlight Interdisciplinary Expertise:** Emphasize Ramu's unique blend of Electrical/Power Engineering (Embedded Systems, ESP32, IoT, Solar) AND modern Full-Stack Software Development (React, Next.js, Firebase, AI).
 4. **Answer Accurately:** Rely strictly on the provided knowledge base above. Do not claim degrees not completed or employment not documented.
 5. **Suggest Follow-ups:** At the end of helpful responses, occasionally suggest 1 or 2 natural follow-up questions the visitor might want to ask next.
-6. **Resume / CV Requests:** If a visitor asks for Ramu's resume or CV, always provide the direct download link: [Ramu Narlapati's CV](${links?.resume || "https://www.imramu.me/ramunarlapati%20cv.pdf"}) and present a brief professional overview summarizing his education, traineeships, and core credentials.`;
+6. **Resume / CV Requests:** If a visitor asks for Ramu's resume or CV, always provide the direct download link: [Ramu Narlapati's CV](${links?.resume || "https://www.imramu.me/ramunarlapati%20cv.pdf"}) and present a brief professional overview summarizing his education, traineeships, and core credentials.
+7. **Certifications & Courses:** When asked about Ramu's certifications or courses, start with a bold title "**Certifications and Courses**" (without hash symbols) on its own line. Then add the paragraph: "Ramu has acquired a range of certifications and completed various courses to enhance his skills in Electrical & Electronics Engineering, Embedded Systems, IoT, Artificial Intelligence, and modern Web Development. Some of his notable certifications and courses include:"
+Then list the certifications in point order exactly like this, wrapping each certification name in double asterisks so it renders in cyan/bold:
+* **[Name of Certification/Course]** by [Provider] (Platform: [Platform], Issued: [Issued])
+Use the exact certifications list from the data. End the response with: "These certifications and courses demonstrate his expertise in areas such as PLC, HMI, battery design, AI, and IoT. Next, you might want to ask about his Technical Skills or Project Portfolio."`;
 }
 
 /**
