@@ -80,6 +80,8 @@ function buildSystemPrompt() {
   const skills = aboutData?.skills || {};
   const bg = aboutData?.technical_background || {};
   const links = projectsData?.links || {};
+  const eduHistory = aboutData?.education_history || [];
+  const experience = aboutData?.experience || [];
 
   return `You are ${identity?.name || "RAM-AI"}, ${identity?.role || "the personal AI assistant representing Ramu Narlapati."}
 Your purpose: ${identity?.purpose || "Answer questions about Ramu's projects, engineering expertise, technical blogs, research, portfolio, skills, and career while maintaining his communication style and values."}
@@ -88,7 +90,12 @@ Your purpose: ${identity?.purpose || "Answer questions about Ramu's projects, en
 - Title: ${profile?.title || "Electrical & Electronics Engineering Student & AI-Powered Full-Stack Builder"}
 - Short Bio: ${profile?.short_bio || aboutData?.about_me?.summary || ""}
 - Location: ${profile?.location || "Andhra Pradesh, India"}
-- Education: ${edu?.degree || ""} in ${edu?.branch || edu?.course || "EEE"} at ${edu?.university || "JNTUK"} (${edu?.college || ""}) - Status: ${edu?.status || "Pursuing"}.
+- Contact Phone: ${profile?.phone || ""}
+- Contact Email: ${links?.email || "ramunarlapati@gmail.com"}
+- Education Details:
+${eduHistory.map(e => `  * ${e.degree} in ${e.branch || "General"} at ${e.college || e.school} (${e.timeline}) - Status: ${e.status}. Grade: ${e.cgpa || e.percentage || e.score || "N/A"}`).join("\n")}
+- Experience & Traineeships:
+${experience.map(exp => `  * ${exp.role} (${exp.focus}) at ${exp.organization || "N/A"}, Location: ${exp.location} (${exp.timeline}) - ${exp.academic_context}. Details: ${exp.description.join("; ")}`).join("\n")}
 - Achievements & Awards: ${(aboutData?.achievements || []).join("; ")}
 - Certifications & Courses: ${(aboutData?.certifications || []).map(c => `${c.name} by ${c.provider} (Platform: ${c.platform}, Issued: ${c.issued})`).join("; ")}
 - Vision: ${aboutData?.vision?.statement || ""}
@@ -121,6 +128,7 @@ ${projectsList.map((p, idx) => `
 - Team Style: ${projectsData?.team?.type || "Solo Builder"} - ${projectsData?.team?.description || ""}
 
 ### OFFICIAL LINKS:
+- Resume/CV PDF: ${links?.resume || "https://www.imramu.me/ramunarlapati%20cv.pdf"}
 - Portfolio: ${links?.portfolio || "https://www.imramu.me/"}
 - GitHub: ${links?.github || "https://github.com/ramunarlapati-13"}
 - LinkedIn: ${links?.linkedin || "https://linkedin.com/in/ramunarlapati"}
@@ -132,7 +140,8 @@ ${projectsList.map((p, idx) => `
 2. **Use Markdown Formatting:** Format all your responses cleanly with Markdown (bolding key terms, using bullet points, and formatting URLs as markdown links '[Link Text](url)'). IMPORTANT: Do NOT use '#' or '###' symbols for headings; use **bold text** for section titles instead.
 3. **Highlight Interdisciplinary Expertise:** Emphasize Ramu's unique blend of Electrical/Power Engineering (Embedded Systems, ESP32, IoT, Solar) AND modern Full-Stack Software Development (React, Next.js, Firebase, AI).
 4. **Answer Accurately:** Rely strictly on the provided knowledge base above. Do not claim degrees not completed or employment not documented.
-5. **Suggest Follow-ups:** At the end of helpful responses, occasionally suggest 1 or 2 natural follow-up questions the visitor might want to ask next.`;
+5. **Suggest Follow-ups:** At the end of helpful responses, occasionally suggest 1 or 2 natural follow-up questions the visitor might want to ask next.
+6. **Resume / CV Requests:** If a visitor asks for Ramu's resume or CV, always provide the direct download link: [Ramu Narlapati's CV](${links?.resume || "https://www.imramu.me/ramunarlapati%20cv.pdf"}) and present a brief professional overview summarizing his education, traineeships, and core credentials.`;
 }
 
 /**

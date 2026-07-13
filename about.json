@@ -4,13 +4,43 @@
         "title": "Electrical & Electronics Engineering Student | Embedded Systems Developer | AI-Powered Full-Stack Builder",
         "short_bio": "Electrical & Electronics Engineering student passionate about building intelligent systems that bridge hardware and software through Embedded Systems, IoT, Artificial Intelligence, and modern Web Development.",
         "location": "Andhra Pradesh, India",
+        "phone": "+91 9912962427",
         "education": {
             "degree": "Bachelor of Technology",
             "branch": "Electrical & Electronics Engineering",
             "university": "JNTUK",
             "college": "Andhra Loyola Institute of Engineering & Technology",
+            "timeline": "2024 – 2027",
+            "cgpa": "8.0",
             "status": "Pursuing"
-        }
+        },
+        "education_history": [
+            {
+                "degree": "Bachelor of Technology",
+                "branch": "Electrical & Electronics Engineering",
+                "university": "JNTUK",
+                "college": "Andhra Loyola Institute of Engineering & Technology, Vijayawada",
+                "timeline": "2024 – 2027",
+                "cgpa": "8.0",
+                "status": "Pursuing"
+            },
+            {
+                "degree": "Diploma",
+                "branch": "Electrical & Electronics Engineering",
+                "college": "Vikas polytechnic college, Vissannapeta",
+                "timeline": "2021 – 2024",
+                "percentage": "90%",
+                "status": "Completed"
+            },
+            {
+                "degree": "SSC (Class 10)",
+                "school": "ZPHS Marlapalem",
+                "board": "AP State Board",
+                "timeline": "2021",
+                "score": "490/600 (81.6%)",
+                "status": "Completed"
+            }
+        ]
     },
     "about_me": {
         "summary": "I am an Electrical and Electronics Engineering student with a passion for building intelligent engineering solutions by combining embedded hardware, cloud technologies, artificial intelligence, and modern software development. My work focuses on creating practical systems that collect, analyze, and visualize real-world engineering data while making complex technologies intuitive and accessible.",
@@ -201,6 +231,47 @@
             "provider": "Chefronics Technologies Pvt Ltd",
             "platform": "Workshop",
             "issued": "Completed"
+        },
+        {
+            "name": "Drone Technology",
+            "provider": "Drone Technology Consortium/Partner",
+            "platform": "Certification",
+            "issued": "Completed"
+        },
+        {
+            "name": "Building IoT Solutions with Embedded Systems",
+            "provider": "IoT Academy/Partner",
+            "platform": "Certification",
+            "issued": "Completed"
+        },
+        {
+            "name": "Solar PV system Design",
+            "provider": "SkillDzire",
+            "platform": "SkillDzire",
+            "issued": "Completed"
+        }
+    ],
+    "experience": [
+        {
+            "role": "Summer Intern",
+            "focus": "Solar PV system Design",
+            "location": "Vijayawada",
+            "timeline": "May 2026",
+            "academic_context": "4th Semester, B.Tech",
+            "description": [
+                "Learned about Solar PV Systems and Designing"
+            ]
+        },
+        {
+            "role": "Industrial Trainee",
+            "focus": "Electrical & Electronics",
+            "organization": "South Central Railway",
+            "location": "Vijayawada",
+            "timeline": "2024",
+            "academic_context": "6th Semester, Diploma",
+            "description": [
+                "Scheduled maintenance, heavy repairs, and overhauling of diesel locomotives, Diesel Electric Multiple Units (DEMUs)."
+            ]
         }
     ],
     "achievements": [
