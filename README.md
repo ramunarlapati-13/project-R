@@ -5,6 +5,7 @@ RAG-powered portfolio chatbot and project grid built with vanilla Node.js (no ex
 ## Overview
 
 project-R combines:
+
 - A frontend portfolio/chat UI (`index.html`, `style.css`, `script.js`)
 - A lightweight Node.js backend (`server.js`)
 - A retrieval layer from local JSON knowledge files (`about.json`, `brain.json`)
@@ -13,8 +14,9 @@ The backend serves static files, exposes REST endpoints, and handles chat reques
 
 ## Tech Stack
 
-<<<<<<< HEAD
----
+- Node.js core modules only (`http`, `https`, `fs`, `path`, `url`)
+- Groq Chat Completions API (`llama-3.3-70b-versatile` by default)
+- Plain HTML/CSS/JavaScript frontend
 
 ## 📂 Project Structure
 
@@ -40,26 +42,6 @@ project R/
 └── style.css             # Main stylesheet implementing dark glassmorphism styling
 ```
 
----
-
-### 🧠 RAG & AI Pipeline Flow
-=======
-- Node.js core modules only (`http`, `https`, `fs`, `path`, `url`)
-- Groq Chat Completions API (`llama-3.3-70b-versatile` by default)
-- Plain HTML/CSS/JavaScript frontend
->>>>>>> ba30b59735b551bede62e2da09ad2163d23583d9
-
-## Project Structure
-
-- `server.js` — HTTP server and API routes
-- `index.html` — main UI shell
-- `script.js` — frontend chat + portfolio interactions
-- `style.css` — UI styling
-- `about.json` — developer profile/context
-- `brain.json` — projects and knowledge base
-- `.env.example` — environment variable template
-- `start_server.bat` — Windows quick launcher
-
 ## Environment Setup
 
 Create a `.env` file in the repository root:
@@ -73,9 +55,11 @@ GROQ_MODEL=llama-3.3-70b-versatile
 ## Run Locally
 
 ### Option 1 (Windows)
+
 Double-click `start_server.bat`
 
 ### Option 2 (CLI)
+
 ```bash
 node server.js
 ```
