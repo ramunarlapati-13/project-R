@@ -12,6 +12,34 @@ The application features a unique dual-architecture:
 1. **Frontend**: An ultra-premium, dark obsidian glassmorphism landing page (`index.html`, `style.css`, `script.js`) with Web Audio API sound effects, dynamic category filtering, and chat interactions.
 2. **Backend**: A pure Node.js HTTP server (`server.js`) that operates with zero npm dependencies, parses environment variables, serves static files, and drives a live RAG pipeline using the Groq API.
 
+---
+
+## 📂 Project Structure
+
+Below is the directory structure for the `Project R` full-stack application:
+
+```text
+project R/
+├── scratch/               # Scratch files and temporary workspace scripts
+├── .env                  # Local environment configuration (API keys)
+├── .env.example          # Sample environment variables template
+├── .gitignore            # Git ignore configurations
+├── .hintrc               # Project hinting and code quality settings
+├── about.json            # Static developer bio, education, and credentials context
+├── brain.json            # Project list, tech stack, and chatbot configuration context
+├── index.html            # Main portfolio landing page with interactive chat interface
+├── package.json          # Node.js project configuration (scripts)
+├── ramunarlapati cv.pdf  # Professional resume document
+├── README.md             # Codebase documentation and API reference
+├── render.yaml           # Deployment configuration blueprint for Render hosting
+├── script.js             # Client-side user interface interactions & chatbot logic
+├── server.js             # Native Node.js backend HTTP server & RAG controller
+├── start_server.bat      # Windows batch execution script to run local server
+└── style.css             # Main stylesheet implementing dark glassmorphism styling
+```
+
+---
+
 ### 🧠 RAG & AI Pipeline Flow
 
 The RAG assistant dynamically reads knowledge files from disk on every request. Here is how a user question is answered:
