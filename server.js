@@ -33,10 +33,37 @@ function loadEnv() {
 loadEnv();
 
 const PORT = process.env.PORT || 3000;
-const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.3-70b-versatile";
+const DEFAULT_MODEL = "openrouter/auto";
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || DEFAULT_MODEL;
+const OPENROUTER_SITE_URL = process.env.OPENROUTER_SITE_URL || "https://www.imramu.me";
+const OPENROUTER_SITE_NAME = process.env.OPENROUTER_SITE_NAME || "RAM-AI Portfolio Hub";
 
+// Candidate models prioritized for speed and lowest latency
+const FASTEST_CANDIDATE_MODELS = [
+  "openrouter/auto",
+  "google/gemini-2.5-flash",
+  "meta-llama/llama-3.3-70b-instruct:nitro",
+  "openai/gpt-4o-mini",
+  "deepseek/deepseek-chat"
+];
+
+// List of popular/recommended models available on OpenRouter
+const RECOMMENDED_MODELS = [
+  "meta-llama/llama-3.3-70b-instruct",
+  "google/gemini-2.5-flash",
+  "openai/gpt-4o-mini",
+  "openai/gpt-4o",
+  "anthropic/claude-3.5-sonnet",
+  "deepseek/deepseek-chat"
+];
+
+function getOpenRouterApiKey() {
+  return process.env.OPENROUTER_API_KEY || process.env.GROQ_API_KEY || "";
+}
+
+// Backward compatibility helper
 function getGroqApiKey() {
-  return process.env.GROQ_API_KEY || "";
+  return getOpenRouterApiKey();
 }
 
 // In-memory conversation history store (keyed by sessionId)
@@ -76,7 +103,6 @@ function buildSystemPrompt() {
   const projectsList = Array.isArray(projectsData) ? projectsData : (projectsData?.projects || []);
   const identity = projectsData?.chatbot_identity || {};
   const profile = aboutData?.profile || {};
-  const edu = profile?.education || aboutData?.personal_summary?.education || {};
   const skills = aboutData?.skills || {};
   const bg = aboutData?.technical_background || {};
   const links = projectsData?.links || {};
@@ -150,35 +176,57 @@ Use the exact certifications list from the data. End the response with: "These c
 }
 
 /**
- * Helper function to send HTTP POST request to Groq API using built-in https module.
+ * Helper function to send HTTP POST request to OpenRouter's OpenAI-compatible API
+ * endpoint using the built-in Node.js https module.
+ *
+ * Supports multi-model dynamic switching and custom fallback options.
  */
-function callGroqApi(messages) {
+function callOpenRouterApi(messages, options = {}) {
   return new Promise((resolve, reject) => {
-    const apiKey = getGroqApiKey();
+    const apiKey = getOpenRouterApiKey();
     if (!apiKey) {
-      return reject(new Error("GROQ_API_KEY environment variable is not set. Please add GROQ_API_KEY=your_key_here to a .env file in the project directory."));
+      return reject(new Error("OPENROUTER_API_KEY environment variable is not set. Please add OPENROUTER_API_KEY=your_key_here to a .env file in the project directory."));
     }
 
-    const requestData = JSON.stringify({
-      model: GROQ_MODEL,
-      messages: messages,
-      temperature: 0.7,
-      max_tokens: 1024,
-      top_p: 0.95
-    });
+    // Dynamic model selection with fallback
+    const selectedModel = (options.model && typeof options.model === "string" && options.model.trim())
+      ? options.model.trim()
+      : OPENROUTER_MODEL;
 
-    const options = {
-      hostname: "api.groq.com",
-      path: "/openai/v1/chat/completions",
+    const payload = {
+      model: selectedModel,
+      messages: messages,
+      temperature: options.temperature !== undefined ? options.temperature : 0.7,
+      max_tokens: options.max_tokens !== undefined ? options.max_tokens : 1024,
+      top_p: options.top_p !== undefined ? options.top_p : 0.95,
+      provider: {
+        sort: "latency" // Dynamically routes to the lowest latency provider available at that instant
+      }
+    };
+
+    // When auto/fastest is selected, enable multi-model fallback across high-speed providers
+    if (selectedModel === "openrouter/auto" || selectedModel === "auto" || selectedModel === "fastest") {
+      payload.model = "openrouter/auto";
+      payload.models = FASTEST_CANDIDATE_MODELS;
+      payload.route = "fallback";
+    }
+
+    const requestData = JSON.stringify(payload);
+
+    const requestOptions = {
+      hostname: "openrouter.ai",
+      path: "/api/v1/chat/completions",
       method: "POST",
       headers: {
         "Authorization": `Bearer ${apiKey}`,
+        "HTTP-Referer": OPENROUTER_SITE_URL,
+        "X-Title": OPENROUTER_SITE_NAME,
         "Content-Type": "application/json",
         "Content-Length": Buffer.byteLength(requestData)
       }
     };
 
-    const req = https.request(options, (res) => {
+    const req = https.request(requestOptions, (res) => {
       let body = "";
       res.on("data", (chunk) => {
         body += chunk;
@@ -188,24 +236,42 @@ function callGroqApi(messages) {
           try {
             const parsed = JSON.parse(body);
             const reply = parsed.choices?.[0]?.message?.content || "No response generated.";
-            resolve(reply);
+            resolve({
+              reply,
+              model: parsed.model || selectedModel,
+              usage: parsed.usage || null
+            });
           } catch (err) {
-            reject(new Error("Failed to parse Groq API response: " + err.message));
+            reject(new Error("Failed to parse OpenRouter API response: " + err.message));
           }
         } else {
-          reject(new Error(`Groq API returned status ${res.statusCode}: ${body}`));
+          try {
+            const errorParsed = JSON.parse(body);
+            const errorMessage = errorParsed.error?.message || errorParsed.message || body;
+            reject(new Error(`OpenRouter API returned status ${res.statusCode}: ${errorMessage}`));
+          } catch (e) {
+            reject(new Error(`OpenRouter API returned status ${res.statusCode}: ${body}`));
+          }
         }
       });
     });
 
     req.on("error", (err) => {
-      reject(new Error("Network error connecting to Groq API: " + err.message));
+      reject(new Error("Network error connecting to OpenRouter API: " + err.message));
+    });
+
+    req.setTimeout(30000, () => {
+      req.destroy();
+      reject(new Error("Request timed out connecting to OpenRouter API (30s limit)."));
     });
 
     req.write(requestData);
     req.end();
   });
 }
+
+// Backward-compatible alias
+const callGroqApi = (messages, options = {}) => callOpenRouterApi(messages, options).then(res => (typeof res === "object" && res.reply) ? res.reply : res);
 
 /**
  * Helper to send JSON responses
@@ -245,7 +311,11 @@ const server = http.createServer(async (req, res) => {
     const projList = Array.isArray(kb.projectsData) ? kb.projectsData : (kb.projectsData?.projects || []);
     return sendJson(res, 200, {
       status: "online",
-      model: GROQ_MODEL,
+      provider: "openrouter",
+      endpoint: "https://openrouter.ai/api/v1/chat/completions",
+      model: OPENROUTER_MODEL,
+      defaultModel: DEFAULT_MODEL,
+      supportedModels: RECOMMENDED_MODELS,
       knowledgeBase: {
         projectsCount: projList.length,
         hasAbout: !!(kb.aboutData?.profile || kb.aboutData?.personal_summary)
@@ -283,13 +353,13 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
-  // 5. Chat Endpoint (RAG Core)
+  // 5. Chat Endpoint (RAG Core with Multi-Model Support)
   if (req.method === "POST" && pathname === "/api/chat") {
     let body = "";
     req.on("data", chunk => { body += chunk; });
     req.on("end", async () => {
       try {
-        const { message, sessionId = "default" } = JSON.parse(body || "{}");
+        const { message, sessionId = "default", model } = JSON.parse(body || "{}");
 
         if (!message || typeof message !== "string" || !message.trim()) {
           return sendJson(res, 400, { error: "Message is required and cannot be empty." });
@@ -311,24 +381,27 @@ const server = http.createServer(async (req, res) => {
           { role: "user", content: message.trim() }
         ];
 
-        console.log(`[Chat Request] Session: ${sessionId} | User: "${message.trim()}"`);
+        console.log(`[Chat Request] Session: ${sessionId} | Model: ${model || OPENROUTER_MODEL} | User: "${message.trim()}"`);
 
-        // Call Groq API
-        const reply = await callGroqApi(messages);
+        // Call OpenRouter API
+        const responseData = await callOpenRouterApi(messages, { model });
+        const reply = typeof responseData === "object" ? responseData.reply : responseData;
+        const usedModel = typeof responseData === "object" ? responseData.model : (model || OPENROUTER_MODEL);
 
         // Update session history
         history.push({ role: "user", content: message.trim() });
         history.push({ role: "assistant", content: reply });
 
-        console.log(`[Chat Reply] Session: ${sessionId} | Reply Length: ${reply.length} chars`);
+        console.log(`[Chat Reply] Session: ${sessionId} | Model: ${usedModel} | Length: ${reply.length} chars`);
 
         return sendJson(res, 200, {
           reply: reply,
+          model: usedModel,
           sessionId: sessionId,
           timestamp: new Date().toISOString()
         });
       } catch (error) {
-        console.error("[Groq API Error]", error.message);
+        console.error("[OpenRouter API Error]", error.message);
         return sendJson(res, 500, {
           error: "Failed to generate AI response: " + error.message,
           details: error.message
@@ -382,12 +455,13 @@ const server = http.createServer(async (req, res) => {
 });
 
 server.listen(PORT, () => {
-  const apiKey = getGroqApiKey();
+  const apiKey = getOpenRouterApiKey();
   console.log("==========================================================");
   console.log(`🚀 RAM-AI Portfolio Backend & UI Server running!`);
-  console.log(`🌐 Local URL:  http://localhost:${PORT}`);
-  console.log(`🧠 Knowledge Base: Loaded from brain.json & about.json`);
-  console.log(`⚡ Groq Model:   ${GROQ_MODEL}`);
-  console.log(`🔑 Groq API Key: ${apiKey ? "Loaded (" + apiKey.slice(0, 8) + "...)" : "⚠️ NOT SET (Please add GROQ_API_KEY to .env file)"}`);
+  console.log(`🌐 Local URL:        http://localhost:${PORT}`);
+  console.log(`🧠 Knowledge Base:   Loaded from brain.json & about.json`);
+  console.log(`⚡ OpenRouter Model: ${OPENROUTER_MODEL}`);
+  console.log(`🔑 OpenRouter Key:   ${apiKey ? "Loaded (" + apiKey.slice(0, 8) + "...)" : "⚠️ NOT SET (Please add OPENROUTER_API_KEY to .env file)"}`);
+  console.log(`🏷️ Site Header:      ${OPENROUTER_SITE_NAME} (${OPENROUTER_SITE_URL})`);
   console.log("==========================================================");
 });

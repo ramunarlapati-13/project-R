@@ -1,10 +1,11 @@
 {
   "name": "ram-ai-portfolio",
   "version": "1.0.0",
-  "description": "Full-stack RAG AI Assistant and interactive portfolio grid built with pure Node.js and Groq Llama-3.3-70b",
+  "description": "Full-stack RAG AI Assistant and interactive portfolio grid built with pure Node.js and OpenRouter Multi-Model API",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test:openrouter": "node test-openrouter.js"
   },
   "engines": {
     "node": ">=18.0.0"

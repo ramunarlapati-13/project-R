@@ -373,6 +373,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial greeting
   setTimeout(() => {
-    appendMessage("assistant", "Hello! I am **RAM-AI**, Ramu Narlapati's AI Portfolio Assistant powered by Groq Llama-3.3-70b and RAG knowledge base. Ask me anything about Ramu's Electrical Engineering studies, full-stack projects, or skills! 🚀");
+    appendMessage("assistant", "Hello! I am **RAM-AI**, Ramu Narlapati's AI Portfolio Assistant powered by OpenRouter's real-time fastest model router and RAG knowledge base. Ask me anything about Ramu's Electrical Engineering studies, full-stack projects, or skills! 🚀");
   }, 400);
 });

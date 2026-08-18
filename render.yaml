@@ -1,12 +1,16 @@
 services:
   - type: web
-    name: ram-ai-portfolio
+  - name: ram-ai-portfolio
     runtime: node
     plan: free
     buildCommand: echo "Zero npm dependencies - build complete!"
     startCommand: node server.js
     envVars:
-      - key: GROQ_API_KEY
+      - key: OPENROUTER_API_KEY
         sync: false
-      - key: GROQ_MODEL
-        value: llama-3.3-70b-versatile
+      - key: OPENROUTER_MODEL
+        value: openrouter/auto
+      - key: OPENROUTER_SITE_URL
+        value: https://www.imramu.me
+      - key: OPENROUTER_SITE_NAME
+        value: RAM-AI Portfolio Hub
