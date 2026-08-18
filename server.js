@@ -274,14 +274,16 @@ function callOpenRouterApi(messages, options = {}) {
 const callGroqApi = (messages, options = {}) => callOpenRouterApi(messages, options).then(res => (typeof res === "object" && res.reply) ? res.reply : res);
 
 /**
- * Helper to send JSON responses
+ * Helper to send JSON responses with universal CORS enabled for any origin/website
  */
 function sendJson(res, statusCode, data) {
   res.writeHead(statusCode, {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization"
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    "Access-Control-Allow-Headers": "*",
+    "Access-Control-Expose-Headers": "*",
+    "Access-Control-Max-Age": "86400"
   });
   res.end(JSON.stringify(data));
 }
@@ -293,12 +295,14 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = url.parse(req.url, true);
   const pathname = parsedUrl.pathname;
 
-  // Handle CORS Preflight OPTIONS request
+  // Handle CORS Preflight OPTIONS request globally for any website/origin
   if (req.method === "OPTIONS") {
     res.writeHead(204, {
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization"
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Expose-Headers": "*",
+      "Access-Control-Max-Age": "86400"
     });
     return res.end();
   }
@@ -416,13 +420,19 @@ const server = http.createServer(async (req, res) => {
 
   // Security check to prevent directory traversal
   if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403);
+    res.writeHead(403, {
+      "Content-Type": "text/plain",
+      "Access-Control-Allow-Origin": "*"
+    });
     return res.end("Forbidden");
   }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      res.writeHead(404, { "Content-Type": "text/plain" });
+      res.writeHead(404, {
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*"
+      });
       return res.end("404 Not Found: File does not exist.");
     }
 
@@ -445,10 +455,17 @@ const server = http.createServer(async (req, res) => {
     const contentType = mimeTypes[ext] || "application/octet-stream";
     fs.readFile(filePath, (err, content) => {
       if (err) {
-        res.writeHead(500);
+        res.writeHead(500, {
+          "Content-Type": "text/plain",
+          "Access-Control-Allow-Origin": "*"
+        });
         return res.end("500 Internal Server Error: " + err.code);
       }
-      res.writeHead(200, { "Content-Type": contentType });
+      res.writeHead(200, {
+        "Content-Type": contentType,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS"
+      });
       res.end(content);
     });
   });
